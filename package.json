@@ -12,7 +12,7 @@
     "clean:dist": "rm -rf dist &> /dev/null",
     "clean:js": "rm -f `find src/ | grep \".js$\"` &> /dev/null",
     "clean:jsmap": "rm -f `find src/ | grep \".js.map$\"` &> /dev/null",
-    "docker:build":"npm run build && docker build --tag=\"openstreetmap-proxy\" ."
+    "docker:build": "docker build --tag=\"openstreetmap-proxy\" ."
   },
   "author": "Damien Duboeuf <smeagolworms4@gmail.com>",
   "license": "ISC",

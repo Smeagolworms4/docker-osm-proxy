@@ -3,8 +3,14 @@ FROM node:lts-alpine
 MAINTAINER Damien Duboeuf <smeagolworms4@gmail.com>
 
 
-ADD node_modules /usr/share/openstreetmap-proxy/node_modules
-ADD dist/index.js /usr/share/openstreetmap-proxy/dist/index.js
+ADD src /usr/share/openstreetmap-proxy/src
+ADD package.json /usr/share/openstreetmap-proxy/package.json
+ADD package-lock.json /usr/share/openstreetmap-proxy/package-lock.json
+
+WORKDIR /usr/share/openstreetmap-proxy
+
+RUN npm install
+RUN npm run build
 
 WORKDIR /usr/share/openstreetmap-proxy/dist
 
