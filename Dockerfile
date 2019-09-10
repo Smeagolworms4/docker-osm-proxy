@@ -2,17 +2,20 @@ FROM node:lts-alpine
 
 MAINTAINER Damien Duboeuf <smeagolworms4@gmail.com>
 
-
 ADD src /usr/share/openstreetmap-proxy/src
+ADD package.json /usr/share/openstreetmap-proxy/tsconfig.json
 ADD package.json /usr/share/openstreetmap-proxy/package.json
 ADD package-lock.json /usr/share/openstreetmap-proxy/package-lock.json
 
 WORKDIR /usr/share/openstreetmap-proxy
 
-RUN npm install
-RUN npm run build
+RUN npm install && npm run build && rm -r node_modules && npm install --only=prod
 
 WORKDIR /usr/share/openstreetmap-proxy/dist
+
+RUN mkdir -p /var/cache/openstreetmap-proxy && chown node:node /var/cache/openstreetmap-proxy
+
+USER node
 
 ENV OSM_PROXY_PORT=80
 ENV OSM_PROXY_CACHE_PATH=/var/cache/openstreetmap-proxy
