@@ -1,0 +1,28 @@
+{
+  "name": "openstreetmap-proxy",
+  "version": "1.0.0",
+  "description": "Openstrretmap Proxy",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npm run clean && tsc --pretty",
+    "build:dev": "npm run clean && tsc --inlineSources --inlineSourceMap --pretty",
+    "start": "cd ./dist && node index.js 8080",
+    "start:dev": "npm run build:dev && cd ./dist && node --inspect-brk=0.0.0.0:9222 index.js 8080",
+    "clean": "npm run clean:dist && npm run clean:js && npm run clean:jsmap",
+    "clean:dist": "rm -rf dist &> /dev/null",
+    "clean:js": "rm -f `find src/ | grep \".js$\"` &> /dev/null",
+    "clean:jsmap": "rm -f `find src/ | grep \".js.map$\"` &> /dev/null",
+    "docker:build":"npm run build && docker build --tag=\"openstreetmap-proxy\" ."
+  },
+  "author": "Damien Duboeuf <smeagolworms4@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/fs-extra-promise": "^1.0.8",
+    "@types/node": "^12.7.4",
+    "typescript": "^3.6.2"
+  },
+  "dependencies": {
+    "fs-extra-promise": "^1.0.1",
+    "mkdirp-promise": "^5.0.1"
+  }
+}
