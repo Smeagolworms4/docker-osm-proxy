@@ -46,3 +46,7 @@ If you want persist cache directory
 ```bash
 docker  run -v "$(pwd)/cache":/var/cache/openstreetmap-proxy -p 8080:80 openstreetmap-proxy
 ```
+
+## Docker hub
+
+https://hub.docker.com/r/smeagolworms4/openstreetmap-proxy
