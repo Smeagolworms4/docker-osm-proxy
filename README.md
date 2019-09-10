@@ -14,7 +14,7 @@ docker pull smeagolworms4/openstreetmap-proxy
 Run container:
 
 ```bash
-docker run -p 8080:80 -e openstreetmap-proxy
+docker run -p 8080:80 smeagolworms4/openstreetmap-proxy
 ```
 
 Access for test open:
@@ -44,7 +44,7 @@ ENV OSM_PROXY_CACHE_LIFETIME=2592000
 If you want persist cache directory
 
 ```bash
-docker  run -v "$(pwd)/cache":/var/cache/openstreetmap-proxy -p 8080:80 openstreetmap-proxy
+docker  run -v "$(pwd)/cache":/var/cache/openstreetmap-proxy -p 8080:80 smeagolworms4/openstreetmap-proxy
 ```
 
 ## Docker hub
