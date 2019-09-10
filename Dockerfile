@@ -9,8 +9,10 @@ ADD package-lock.json /usr/share/openstreetmap-proxy/package-lock.json
 
 WORKDIR /usr/share/openstreetmap-proxy
 
-RUN npm install && npm run build
-RUN rm -r node_modules && npm install --only=prod
+RUN npm install
+RUN npm run build
+RUN rm -r node_modules
+RUN npm install --only=prod
 
 WORKDIR /usr/share/openstreetmap-proxy/dist
 
