@@ -75,22 +75,23 @@ http.createServer(async (req, res) => {
 						reject(new Error('Request Failed.\nStatus Code: '+res.statusCode));
 						res.resume();
 					}
-				});
+				})
+					.on('error', reject)
+				;
 			})
 			const imgData = await promise;
 			await fs.writeFileAsync(file, imgData, 'binary');
 			
 		}
 		
-		const stream = fs.createReadStream(file);
+		const stream: any = await (new Promise((resolve, reject) => {
+			const stream = fs.createReadStream(file);
+			stream.on('open',() => resolve(stream));
+			stream.on('error', () => reject (new Error('Error on read cache file: '+file)));
+		}));
 		
-		stream.on('open', function () {
-	        res.setHeader('Content-Type', 'image/png');
-	        stream.pipe(res);
-	    });
-	    stream.on('error', function () {
-	        throw new Error('Error onr ead cache file: '+file);
-	    });
+        res.setHeader('Content-Type', 'image/png');
+        stream.pipe(res);
 	} catch(e) {
 		console.error('[GET] ', req.url, ' :', e.toString());
 		res.statusCode = 500;
