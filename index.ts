@@ -4,7 +4,7 @@ import * as querystring from 'querystring';
 import * as fs from 'fs-extra-promise';
 import * as mkdirp from 'mkdirp-promise';
 
-const port = parseInt(process.argv[2], 10) ? parseInt(process.argv[2], 10) : 80;
+const port = parseInt(process.argv[2], 10) ? parseInt(process.argv[2], 10) : 8080;
 const pathCache = process.argv[3] ? process.argv[3] : path.resolve(__dirname, './cache');
 const layerUrl = process.argv[4] ? process.argv[4] : 'http://{s}.{type}.openstreetmap.org/{z}/{x}/{y}.png';
 const cacheTime = parseInt(process.argv[5], 10) ? parseInt(process.argv[5], 10) : 3600*24*30; // 30 jours

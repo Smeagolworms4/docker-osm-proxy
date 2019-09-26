@@ -8,13 +8,7 @@
 		"lib": [
 			"es6"
 		],
-		"outDir": "./dist",
-		"baseUrl": ".",
-		"paths": {
-			"@/*": [
-				"src/*"
-			]
-		}
+		"baseUrl": "."
 	},
 	"files": [
 		"src/index.ts"
