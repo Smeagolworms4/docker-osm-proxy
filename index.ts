@@ -64,7 +64,11 @@ http.createServer(async (req, res) => {
 			
 			const promise: Promise<string> = new Promise((resolve, reject) => {
 				let imgData = '';
-				http.get(target, null,res => {
+				const options = {
+					headers: { 'User-Agent': 'OSMProxy' }
+				};
+				
+				http.get(target, options, res => {
 					if (res.statusCode === 200) { 
 						res.setEncoding('binary');
 						res.on('data', chunck => imgData += chunck)
