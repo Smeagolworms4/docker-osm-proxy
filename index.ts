@@ -95,6 +95,9 @@ http.createServer(async (req, res) => {
 		}));
 		
         res.setHeader('Content-Type', 'image/png');
+	res.setHeader("Access-Control-Allow-Origin", "*");
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+                
         stream.pipe(res);
 	} catch(e) {
 		console.error('[GET] ', req.url, ' :', e.toString());
